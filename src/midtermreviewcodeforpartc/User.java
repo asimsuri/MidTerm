@@ -5,6 +5,9 @@
  */
 package midtermreviewcodeforpartc;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * A class that models a User for Uno Online.
  * The user has a name and a password.
@@ -58,4 +61,22 @@ public class User
         password = givenPass;
     }
     
+    public class PasswordValidator {
+ 
+    private Pattern pattern;
+    private Matcher matcher;
+ 
+    private static final String PASSWORD_PATTERN = "((?=.*[a-z])(?=.*\\d)(?=.*[A-Z])(?=.*[@#$%!]).{8,40})";
+ 
+    public PasswordValidator() {
+        pattern = Pattern.compile(PASSWORD_PATTERN);
+    }
+ 
+    public boolean validate(final String password) {
+ 
+        matcher = pattern.matcher(password);
+        return matcher.matches();
+ 
+    }
+    }   
 }
